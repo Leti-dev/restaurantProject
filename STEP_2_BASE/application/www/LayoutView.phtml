@@ -34,7 +34,19 @@
 <!-- Interface utilisateur -->
 <nav class="user-interface">
     <ul class="link-list">
-    <li><a class="button button-primary" href="<?php echo $requestUrl ?>/user">Créer un compte</a></li>
+    <?php $sess = new UserSession(); 
+        if(!$sess->isAuthenticated()) { ?>
+            <li><a class="button button-primary" href="<?php echo $requestUrl ?>/user">Créer un compte</a></li>
+            <li><a class="button button-primary" href="<?php echo $requestUrl ?>/user/login">Connexion</a></li>
+    <?php } ?>
+
+    <?php if($sess->isAuthenticated()) { ?>
+        <li><a class="button button-primary" href="<?php echo $requestUrl ?>/user">Réserver</a></li>
+        <li><a class="button button-primary" href="<?php echo $requestUrl ?>/user/login">Commander</a></li>
+        <li>Bonjour, <?php echo $_SESSION['firstName'] . $_SESSION['lastName'] ?></li>
+        <li><a class="button button-primary" href="<?php echo $requestUrl ?>/user/login">Déconnexion</a></li>
+    <?php } ?>
+
         <!-- Code HTML/PHP à écrire -->
     </ul>
 </nav>

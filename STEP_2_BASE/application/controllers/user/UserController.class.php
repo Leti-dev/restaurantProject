@@ -7,9 +7,8 @@ class UserController{
     }
 
     public function httpPostMethod(Http $http, array $formFields){
-    	var_dump($formFields);
     	$userModel = new UserModel();
-    	var_dump($userModel->saveUser(
+    	$userModel->saveUser(
     			$formFields['lastName'],
     			$formFields['firstName'],
 				$formFields['birthDate'],
@@ -18,7 +17,9 @@ class UserController{
 				$formFields['zipCode'],
 				$formFields['phone'],
 				$formFields['email'],
-				$formFields['password']));
+				$formFields['password']);
+
+    	$http->redirectTo('/');
 
     }
 

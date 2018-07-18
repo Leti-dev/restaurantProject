@@ -26,3 +26,14 @@ La variable $wwwUrl pointe le chemin absolu jusqu'au dossier d'intégration :
 Pour qu'un controller retourne les données à la vue, il faut toujours avoir un return, par contre, on ne peut faire qu'un seul return donc on peut utiliser un tableau associatif.
 
 
+Hashage du MDP :
+On utilise l'API de PHP qui fonctionne très bien, mais elle fonctionne avec les fonctions :
+	-> password_hash($password);
+	-> password_verify($password, $hashedPassword);
+
+On peut utiliser aussi la fonction crypt(), mais il faut recoder l'API PHP qui fonctionne avec, donc mieux vaut utiliser l'API. 
+Lorsque l'on hash les MDP, il est important d'ajouter un grain de sel, qui va venir s'ajouter au hash, pour éviter les attaques par dictionnaire. Le grain de sel est générer par notgre code.
+
+crypt($password, $salt);
+
+
