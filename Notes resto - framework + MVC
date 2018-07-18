@@ -1,0 +1,28 @@
+Notes de restaurant - Intro framework + MVC :
+
+La partie modèle correspond à la récupération des données souvent en base. Soit le controller est capable de renvoyer directement une vue, soit il fait appel au modèle pour récupérer des données et renvoyer la vue.
+La réécriture d'URL se fait directement avec le framework.
+
+Le framework contient des classes pour réaliser des actions comme la connexion à la DB, en mettant dans un fichier les lignes de code à compléter pour avoir les éléments nécessaires pour réaliser la connexion. application -> config -> database.
+
+La class Database contient les 3 méthodes pour éxecuter les requètes sql, il suffit de les appeler en passant en string la requète que l'on veut éxecuter et le tableau de valeurs (si nécessaire) remplaçant les ?
+
+/-- Parfois on peut avoir des instantiations rapides dans les paramètres d'une méthode :
+	-> $http = new Http();
+	 = function (Http $http){}
+On n'utilise cette syntaxe que dans les paramètres d'une méthode ou d'une fonction. --/ 
+
+	-> Aplication/Controllers/HomeController.class.php :
+les $queryFields et $formFields sont des surcouches et correspondent à $_GET et $POST.
+
+Pour créer les pages en dynamique, on va toujours utiliser $requestUrl qui correspond au chemin absolu jusqu'à l'index.php. On peut donc le concaténer avec le reste du chemin que l'on pourra récupérer. Par exemple pour un lien, on pourrait avoir :
+	-> href="<?php echo $requestUrl . "/user" ?> "
+La variable $wwwUrl pointe le chemin absolu jusqu'au dossier d'intégration :
+	-> application/www
+	-> ex : <img src="<?php echo $wwwUrl ?>/img/image.png"
+
+ -> Pour la page d'accueil :
+	On veut afficher tous les plats donc il faut avoir un modèle pour faire notre requète. On va utiliser la méthode GET pour savoir à quel modèle on fait appel. Et ensuite on va renvoyer la vue qui correspond avec les données récupérées.
+Pour qu'un controller retourne les données à la vue, il faut toujours avoir un return, par contre, on ne peut faire qu'un seul return donc on peut utiliser un tableau associatif.
+
+
