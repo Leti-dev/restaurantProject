@@ -7,8 +7,9 @@ class UserController{
     }
 
     public function httpPostMethod(Http $http, array $formFields){
-    	$userModel = new UserModel();
-    	$userModel->saveUser(
+    	try{
+            $userModel = new UserModel();
+    	    $userModel->saveUser(
     			$formFields['lastName'],
     			$formFields['firstName'],
 				$formFields['birthDate'],
@@ -19,8 +20,15 @@ class UserController{
 				$formFields['email'],
 				$formFields['password']);
 
-    	$http->redirectTo('/');
+            $flashMess = new FlashBag();
+            $flashMess->add('Votre inscription est terminée, vous pouvez maintenant réserver ou commander nos produits.');
 
+    	   $http->redirectTo('/');
+        }
+        catch(Exception $e){
+            $errorMess = $e->getMessage();
+            return [ 'error' => $errorMess];
+        }
     }
 
 }

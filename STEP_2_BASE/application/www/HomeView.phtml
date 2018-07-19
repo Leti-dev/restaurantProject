@@ -4,6 +4,11 @@
 
 
 <!-- Liste des aliments -->
+<aside class="notice">
+    <?php $flash = new FlashBag();
+            if($flash->hasMessages()){
+                echo $message = $flash->fetchMessage();} ?>
+</aside>
 <table class="generic-table meal-list">
     <caption>Carte du restaurant</caption>
     <tbody>

@@ -7,12 +7,25 @@ class LoginController{
     }
 
     public function httpPostMethod(Http $http, array $formFields){
-    	$userModel = new UserModel();
-        $user = $userModel->findWithEmailPassword($formFields['email'], $formFields['password']);
+    	try{
+            $userModel = new UserModel();
+            $user = $userModel->findWithEmailPassword($formFields['email'], $formFields['password']);
 
-        $userSession = new UserSession();
-        $userSession->create($user['Id'], $user['FirstName'], $user['LastName'], $user['Email']);
-        $userSession->isAuthenticated();
+            $userSession = new UserSession();
+            $userSession->create($user['Id'], $user['FirstName'], $user['LastName'], $user['Email']);
+            $userSession->isAuthenticated();
+
+            $flashMess = new FlashBag();
+            $flashMess->add('Vous êtes maintenant connecté.');
+
+            $http->redirectTo('/');
+        }
+        catch(Exception $e){
+            $errorMess = $e->getMessage();
+            return [ 'error' => $errorMess];
+        }
+
+
     }
 
 }

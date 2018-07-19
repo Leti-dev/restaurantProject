@@ -26,9 +26,9 @@ class UserSession{
     public function isAuthenticated() {
     	if(array_key_exists('user', $_SESSION) && !empty($_SESSION['user'])){
     		return true;
-    	}else{
-    		return false;
     	}
+    	
+    	return false;
         // return true, si l'user est log
         
         // return false, si il ne l'est pas
@@ -36,27 +36,38 @@ class UserSession{
 
     public function destroy() {
         // Destruction de l'ensemble de la session.
-
+    	$_SESSION = [];
+    	session_destroy();
     }
 
     public function getEmail() {
-
+        if($this->isAuthenticated() == false) { return null; }
+  
+        return $_SESSION['user']['email'];
     }
 
     public function getFirstName() {
+        if($this->isAuthenticated() == false) { return null; }
 
+        return $_SESSION['user']['firstName'];
     }
 
     public function getFullName() {
+        if($this->isAuthenticated() == false) { return null; }
 
+        return $_SESSION['user']['firstName'].' '.$_SESSION['user']['lastName'];
     }
 
     public function getLastName() {
+        if($this->isAuthenticated() == false) { return null; }
 
+        return $_SESSION['user']['lastName'];
     }
 
     public function getUserId() {
+        if($this->isAuthenticated() == false) { return null; }
 
+        return $_SESSION['user']['userId'];
     }
 }
 

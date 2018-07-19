@@ -31,7 +31,7 @@ class UserModel{
 								$email, 
 								$newPassword]);
 		}else{
-			die('Mail déjà enregistré ! :(');
+			throw new Exception('Mail déjà enregistré ! :(');
 		}
 
 	}
@@ -60,11 +60,11 @@ class UserModel{
 
 		// Est-ce qu'on a bien trouvé un utilisateur ?
 		if(empty($userInfo)){
-			die('Veuillez-vous inscrire pour pouvoir vous connecter.');
+			throw new Exception('Veuillez-vous inscrire pour pouvoir vous connecter.');
 		}
 			// Est-ce que le mot de passe spécifié est correct par rapport à celui stocké ?
 		if(!$this->verifyPassword($password, $userInfo['Password'])){
-			die('Votre mot de passe est incorrect.');
+			throw new Exception('Votre mot de passe est incorrect.');
 		}
 
 				// Si tout est ok, retourner les infos de l'utilisateur

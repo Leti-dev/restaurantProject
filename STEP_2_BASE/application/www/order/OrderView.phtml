@@ -1,0 +1,20 @@
+<h2>Passer une commande</h2>
+
+<form class="generic-form" method="POST">
+    <fieldset>
+        <legend>Ajouter un article</legend>
+        <label>Nom :
+            <select>
+            <?php foreach ($meals as $meal) : ?>
+                <option value="<?php echo $meal['Name'] ?>"><?php echo $meal['Name'] ?></option>
+            <?php endforeach; ?>
+            </select>
+        </label>
+        <label> Qauntité :
+            <input type="number" name="quantity">
+        </label>
+    </fieldset>
+
+    <button class="button button-primary" type="submit">Valider la commande</button>
+    <button class="button button-cancel" type="reset">Annuler</button>
+</form>

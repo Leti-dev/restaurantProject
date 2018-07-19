@@ -38,13 +38,12 @@
         if(!$sess->isAuthenticated()) { ?>
             <li><a class="button button-primary" href="<?php echo $requestUrl ?>/user">Créer un compte</a></li>
             <li><a class="button button-primary" href="<?php echo $requestUrl ?>/user/login">Connexion</a></li>
-    <?php } ?>
 
-    <?php if($sess->isAuthenticated()) { ?>
-        <li><a class="button button-primary" href="<?php echo $requestUrl ?>/user">Réserver</a></li>
-        <li><a class="button button-primary" href="<?php echo $requestUrl ?>/user/login">Commander</a></li>
-        <li>Bonjour, <?php echo $_SESSION['firstName'] . $_SESSION['lastName'] ?></li>
-        <li><a class="button button-primary" href="<?php echo $requestUrl ?>/user/login">Déconnexion</a></li>
+    <?php } else { ?>
+        <li><a class="button button-primary" href="<?php echo $requestUrl ?>/booking">Réserver</a></li>
+        <li><a class="button button-primary" href="<?php echo $requestUrl ?>/order">Commander</a></li>
+        <li>Bonjour, <?php echo htmlspecialchars($sess->getFullName()); ?></li>
+        <li><a class="button button-primary" href="<?php echo $requestUrl ?>/user/logout">Déconnexion</a></li>
     <?php } ?>
 
         <!-- Code HTML/PHP à écrire -->
