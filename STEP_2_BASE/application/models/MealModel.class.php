@@ -11,6 +11,14 @@ class MealModel{
 				  FROM Meal';
 		return $db->query($query);
 	}
+
+	public function findMeal($id){
+		$db = new Database();
+		$query = 'SELECT *
+				  FROM Meal
+				  WHERE Id = ?';
+		return $db->queryOne($query, [$id]);
+	}
 }
 
 ?>
