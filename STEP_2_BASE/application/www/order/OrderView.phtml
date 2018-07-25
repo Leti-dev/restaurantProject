@@ -1,14 +1,14 @@
 <h2>Passer une commande</h2>
 
-<form class="generic-form">
+<form id="order-form" class="generic-form">
 <input type="hidden" name="salePrice">
     <fieldset>
         <legend>Ajouter un article</legend>
         <label>Nom :
             <select id="meal">
-            <?php foreach ($meals as $meal) : ?>
+            <?php foreach ($meals as $meal) { ?>
                 <option value="<?php echo $meal['Id'] ?>"><?php echo $meal['Name'] ?></option>
-            <?php endforeach; ?>
+            <?php } ?>
             </select>
             <article id="meal-details" class="meal-details no-left-label">
                     <img src="" alt="Photo du produit">
@@ -21,13 +21,16 @@
         </label>
         <button id="validate-order" class="button button-primary">Ajouter</button>
     </fieldset>
+
 <fieldset>
         <legend>Récapitulatif de la commande</legend>
-        <section id="order-summary"></section>
+        <section id="order-summary">
+        </section>
 </fieldset>
 
     <button id="validate-order" class="button button-primary" disabled>Valider la commande</button>
-    <button class="button button-cancel" type="reset">Annuler</button>
+    <a class="button button-cancel small" href="<?= $requestUrl ?>">Annuler</a>
+
 </form>
 
 <script src="<?= $wwwUrl ?>/js/classes/BasketSession.class.js"></script>

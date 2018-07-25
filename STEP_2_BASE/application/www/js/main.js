@@ -5,7 +5,7 @@
 /////////////////////////////////////////////////////////////////////////////////////////
 
 $(function(){
-  
+
   // Effet spécial sur la boite de notifications (le flash bag).
   	$(".notice").delay(2000).fadeOut();
 
@@ -13,7 +13,7 @@ $(function(){
   	var orderForm = new OrderForm();
     
   // Lancer les ecoutes d'evenements
-  	orderForm.run();
+    orderForm.run();    
 
 });
 
